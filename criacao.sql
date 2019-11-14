@@ -18,8 +18,7 @@ CREATE TABLE empregado (
     salario DOUBLE,
     supervisor INT,
     depto INT,
-    PRIMARY KEY (matricula),
-    FOREIGN KEY (supervisor) REFERENCES empregado(matricula)
+    PRIMARY KEY (matricula)
 );
 
 CREATE TABLE departamento (
@@ -35,8 +34,7 @@ CREATE TABLE projeto (
     nome VARCHAR(100),
     local VARCHAR(100),
     depart INT,
-    PRIMARY KEY (codproj),
-    FOREIGN KEY (depart) REFERENCES departamento(coddep)
+    PRIMARY KEY (codproj)
 );
 
 CREATE TABLE alocacao (
@@ -51,8 +49,7 @@ CREATE TABLE dependente (
     matricula INT,
     nome VARCHAR(100),
     sexo VARCHAR(9),
-    PRIMARY KEY (coddepend, matricula),
-    FOREIGN KEY (matricula) REFERENCES empregado(matricula)
+    PRIMARY KEY (coddepend, matricula)
 );
 
 
@@ -60,16 +57,16 @@ CREATE TABLE dependente (
 
 
 #------------------------Adicionando as chaves estrangeiras nas tabelas------------------------
+ALTER TABLE empregado ADD CONSTRAINT matricula FOREIGN KEY (supervisor) REFERENCES empregado(matricula);
 ALTER TABLE empregado ADD CONSTRAINT depto FOREIGN KEY (depto) REFERENCES departamento(coddep);
 ALTER TABLE departamento ADD CONSTRAINT gerente FOREIGN KEY (gerente) REFERENCES empregado(matricula);
 ALTER TABLE projeto ADD CONSTRAINT depart FOREIGN KEY (depart) REFERENCES departamento(coddep);
-ALTER TABLE dependente ADD CONSTRAINT matricula FOREIGN KEY (matricula) REFERENCES empregado(matricula);
 
 #------------------------Deletando as chaves estrangeiras nas tabelas------------------------
-ALTER TABLE dependente DROP FOREIGN KEY matricula;
 ALTER TABLE projeto DROP FOREIGN KEY depart;
 ALTER TABLE departamento DROP FOREIGN KEY gerente;
 ALTER TABLE empregado DROP FOREIGN KEY depto;
+ALTER TABLE empregado DROP FOREIGN KEY supervisor;
 
 #------------------------Comandos para mostrar o estado atual das tabelas------------------------
 SELECT * FROM empregado;
