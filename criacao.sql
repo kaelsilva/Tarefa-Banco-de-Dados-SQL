@@ -1,14 +1,16 @@
+#------------------------Criando e usando o banco criado------------------------
+DROP DATABASE IF EXISTS TarefaBD;
+
+CREATE DATABASE TarefaBD;
+
+USE TarefaBD;
+
 #------------------------Deletando, caso existam, as tabelas para re-execução------------------------
 DROP TABLE IF EXISTS dependente CASCADE;
 DROP TABLE IF EXISTS projeto CASCADE;
 DROP TABLE IF EXISTS departamento CASCADE;
 DROP TABLE IF EXISTS empregado CASCADE;
 DROP TABLE IF EXISTS alocacao CASCADE;
-
-#------------------------Criando e usando o banco criado------------------------
-CREATE DATABASE TarefaBD;
-
-USE TarefaBD;
 
 #------------------------Criando as tabelas sem criar chave estrangeira para outra tabela------------------------
 CREATE TABLE empregado (
@@ -52,12 +54,8 @@ CREATE TABLE dependente (
     PRIMARY KEY (coddepend, matricula)
 );
 
-
-#-- ~~(IMPORTANTE!)Neste momento, todas as tabelas devem ser povoadas (script de povoamento). Caso contrário, poderão haver erros de povoamento após adicionar chaves estrangeiras!
-
-
 #------------------------Adicionando as chaves estrangeiras nas tabelas------------------------
-ALTER TABLE empregado ADD CONSTRAINT matricula FOREIGN KEY (supervisor) REFERENCES empregado(matricula);
+ALTER TABLE empregado ADD CONSTRAINT supervisor FOREIGN KEY (supervisor) REFERENCES empregado(matricula);
 ALTER TABLE empregado ADD CONSTRAINT depto FOREIGN KEY (depto) REFERENCES departamento(coddep);
 ALTER TABLE departamento ADD CONSTRAINT gerente FOREIGN KEY (gerente) REFERENCES empregado(matricula);
 ALTER TABLE projeto ADD CONSTRAINT depart FOREIGN KEY (depart) REFERENCES departamento(coddep);
@@ -69,8 +67,8 @@ ALTER TABLE empregado DROP FOREIGN KEY depto;
 ALTER TABLE empregado DROP FOREIGN KEY supervisor;
 
 #------------------------Comandos para mostrar o estado atual das tabelas------------------------
-SELECT * FROM empregado;
-SELECT * FROM departamento;
-SELECT * FROM alocacao;
-SELECT * FROM projeto;
-SELECT * FROM dependente;
+#SELECT * FROM empregado;
+#SELECT * FROM departamento;
+#SELECT * FROM alocacao;
+#SELECT * FROM projeto;
+#SELECT * FROM dependente;

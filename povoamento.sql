@@ -1,9 +1,9 @@
 #--------------Tabela empregado--------------
-INSERT INTO empregado(matricula, nome, endereco, salario, supervisor, depto) VALUES (1, 'João Silva', 'Rua Oliveira', 12000, NULL, 1);
-INSERT INTO empregado(matricula, nome, endereco, salario, supervisor, depto) VALUES (2, 'Maria Silva', 'Rua Oliveira', 11000, 1, 1);
-INSERT INTO empregado(matricula, nome, endereco, salario, supervisor, depto) VALUES (3, 'José Medeiros', 'Rua Madeira', 10000, NULL, 2);
-INSERT INTO empregado(matricula, nome, endereco, salario, supervisor, depto) VALUES (4, 'Joana Souza', 'Rua Veneza', 8000, 3, 2);
-INSERT INTO empregado(matricula, nome, endereco, salario, supervisor, depto) VALUES (5, 'Joaquim Lima', 'Rua Jardim', 7000, 4, 2);
+INSERT INTO empregado(matricula, nome, endereco, salario, supervisor) VALUES (1, 'João Silva', 'Rua Oliveira', 12000, NULL);
+INSERT INTO empregado(matricula, nome, endereco, salario, supervisor) VALUES (2, 'Maria Silva', 'Rua Oliveira', 11000, 1);
+INSERT INTO empregado(matricula, nome, endereco, salario, supervisor) VALUES (3, 'José Medeiros', 'Rua Madeira', 10000, NULL);
+INSERT INTO empregado(matricula, nome, endereco, salario, supervisor) VALUES (4, 'Joana Souza', 'Rua Veneza', 8000, 3);
+INSERT INTO empregado(matricula, nome, endereco, salario, supervisor) VALUES (5, 'Joaquim Lima', 'Rua Jardim', 7000, 4);
 
 #--------------Tabela departamento--------------
 INSERT INTO departamento(coddep, nome, gerente, dataini) VALUES (1, 'DCT', 1, '2019-01-01');
@@ -11,6 +11,13 @@ INSERT INTO departamento(coddep, nome, gerente, dataini) VALUES (2, 'DIR', 2, '2
 INSERT INTO departamento(coddep, nome, gerente, dataini) VALUES (3, 'DCEA', 3, '2019-03-03');
 INSERT INTO departamento(coddep, nome, gerente, dataini) VALUES (4, 'DEDUC', 4, '2019-04-04');
 INSERT INTO departamento(coddep, nome, gerente, dataini) VALUES (5, 'DGEO', 5, '2019-05-05');
+
+#--------------Tabela empregado (atualizando chave estrangeira 'depto')--------------
+UPDATE empregado SET depto = 1 WHERE matricula = 1;
+UPDATE empregado SET depto = 1 WHERE matricula = 2;
+UPDATE empregado SET depto = 2 WHERE matricula = 3;
+UPDATE empregado SET depto = 2 WHERE matricula = 4;
+UPDATE empregado SET depto = 2 WHERE matricula = 5;
 
 #--------------Tabela projeto--------------
 INSERT INTO projeto(codproj, nome, local, depart) VALUES (1, 'Projeto Alfa', 'Sala A1', 1);
